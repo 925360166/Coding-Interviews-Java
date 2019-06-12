@@ -24,10 +24,10 @@ public class DuplicationInArray {
         int length = 7;
         int[] duplication = new int[1];
 
-        if (duplicate1(numbers, length, duplication)) {
-            System.out.println("duplicate1, true: " + duplication[0]);
+        if (findDuplicate1_1(numbers, length, duplication)) {
+            System.out.println("findDuplicate1_1, true: " + duplication[0]);
         } else {
-            System.out.println("duplicate1, false");
+            System.out.println("findDuplicate1_1, false");
         }
 
 
@@ -35,10 +35,10 @@ public class DuplicationInArray {
         int[] numbers2 = new int[]{2, 3, 1, 0, 2, 5, 3};
         int length2 = 7;
         int[] duplication2 = new int[1];
-        if (duplicate2(numbers2, length2, duplication2)) {
-            System.out.println("duplicate2, true: " + duplication2[0]);
+        if (findDuplicate1_2(numbers2, length2, duplication2)) {
+            System.out.println("findDuplicate1_2, true: " + duplication2[0]);
         } else {
-            System.out.println("duplicate2, false");
+            System.out.println("findDuplicate1_2, false");
         }
     }
 
@@ -89,7 +89,7 @@ public class DuplicationInArray {
      * @param duplication 用于保存重复数字，第一个被找到的重复数字存放在duplication[0]中
      * @return 如果在数组中有重复元素
      */
-    private static boolean duplicate1(int numbers[], int length, int[] duplication) {
+    private static boolean findDuplicate1_1(int numbers[], int length, int[] duplication) {
         if (numbers == null || length == 0) {
             return false;
         }
@@ -110,7 +110,7 @@ public class DuplicationInArray {
      * 在numbers[i]不和i相等时，如果numbers[i]和numbers[numbers[i]]相等就说明重复元素；
      * 否则就交换这两个元素，这个过程相当于排序。举个例子，通过交换将2放入numbers[2]。
      */
-    private static boolean duplicate2(int numbers[], int length, int[] duplication) {
+    private static boolean findDuplicate1_2(int numbers[], int length, int[] duplication) {
         if (numbers == null || length <= 0) {
             return false;
         }
@@ -127,15 +127,54 @@ public class DuplicationInArray {
                     duplication[0] = numbers[i];
                     return true;
                 }
-                swap(numbers, i, numbers[i]);
+                swap(numbers, i);
             }
         }
         return false;
     }
 
-    private static void swap(int[] numbers, int p, int q) {
-        int temp = numbers[p];
-        numbers[p] = numbers[q];
-        numbers[q] = temp;
+    // swap number[i] and numbers[numbers[i]]
+    private static void swap(int[] numbers, int i) {
+        int value = numbers[i];
+        numbers[i] = numbers[value];
+        numbers[numbers[i]] = value;
     }
+
+
+    ///////////////////题目2：不修改数组找出重复的数字////////////////////////
+    private static int findDuplicate2(int numbers[], int length){
+        if(numbers == null || length <= 0){
+            return -1;
+        }
+
+        int start = 1;
+        int end = length - 1;
+        while(end >= start ){
+            int middle = ((end - start) / 2) + start;
+            int count  = countRange(numbers, length, start, middle);
+            if(end == start){
+                if(count > 1) return start;
+                else break;
+            }
+
+            if(count > (middle - start + 1))
+                end = middle;
+            else
+                start = middle + 1;
+        }
+        return -1;
+    }
+
+    private static int countRange(int numbers[], int length, int start, int end){
+        if(numbers == null)
+            return 0;
+        int count = 0;
+        for(int i = 0; i < length; i++){
+            if(numbers[i] >= start && numbers[i] <= end){
+                ++count;
+            }
+        }
+        return count;
+    }
+
 }
