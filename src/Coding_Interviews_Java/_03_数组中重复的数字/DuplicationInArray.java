@@ -1,4 +1,4 @@
-package Coding_Interviews_Java._03_DuplicationInArray;
+package Coding_Interviews_Java._03_数组中重复的数字;
 
 import java.util.Arrays;
 

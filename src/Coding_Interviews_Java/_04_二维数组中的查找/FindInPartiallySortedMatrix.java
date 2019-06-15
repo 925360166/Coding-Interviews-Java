@@ -1,4 +1,4 @@
-package Coding_Interviews_Java._04_FindInPartiallySortedMatrix;
+package Coding_Interviews_Java._04_二维数组中的查找;
 
 /**
  * 面试题四：二维数组中的查找
