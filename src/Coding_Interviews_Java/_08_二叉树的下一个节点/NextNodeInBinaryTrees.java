@@ -26,7 +26,8 @@ public class NextNodeInBinaryTrees {
         }
     }
 
-    public static TreeNode getNext(TreeNode pNode){
+    //找出中序遍历序列的下一个节点
+    public static TreeNode getNextNodeOfInOrder(TreeNode pNode){
         if(pNode == null){
             return null;
         }
