@@ -15,6 +15,12 @@ package Coding_Interviews_Java._07_重建二叉树;
  *     BinaryTreeNode* m_pRight;
  * };
  *
+ * 二叉树:
+ *                1
+ *         2              3
+ *     4               5     6
+ *         7               8
+ *
  *
  * 解题思路
  * 我们知道，前序遍历的第一个节点就是树的根节点，
@@ -34,7 +40,22 @@ public class ConstructBinaryTree {
         int[] inOrder = {4,7,2,1,5,3,8,6};
         TreeNode head = contructBinaryTree(preOrder, inOrder);
 
-        //TODO: 遍历二叉树并打印：head
+        //遍历二叉树并打印：head
+        printBTPreOrder(head);
+
+    }
+
+    //先序遍历
+    public static void printBTPreOrder(TreeNode root){
+        if(root == null){
+            return;
+        }
+        //打印根节点
+        System.out.print(root.value + " ");
+        //打印左叶子
+        printBTPreOrder(root.left);
+        //打印右叶子
+        printBTPreOrder(root.right);
     }
 
     //二叉树节点
