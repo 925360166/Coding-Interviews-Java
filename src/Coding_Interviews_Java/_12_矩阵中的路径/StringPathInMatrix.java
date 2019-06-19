@@ -11,6 +11,10 @@ package Coding_Interviews_Java._12_矩阵中的路径;
  * 但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子字后，
  * 路径不能再次进入这个格子。
  *
+ *      a  b  t  g
+ *      c  f  c  s
+ *      j  d  e  h
+ *
  */
 public class StringPathInMatrix {
 
