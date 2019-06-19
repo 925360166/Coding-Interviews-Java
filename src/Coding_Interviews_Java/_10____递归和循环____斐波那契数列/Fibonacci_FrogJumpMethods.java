@@ -1,4 +1,4 @@
-package Coding_Interviews_Java._10_斐波那契数列;
+package Coding_Interviews_Java._10____递归和循环____斐波那契数列;
 
 /**
  * 题目2：青蛙跳台阶问题

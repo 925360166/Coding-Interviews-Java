@@ -1,4 +1,4 @@
-package Coding_Interviews_Java._09_用两个栈实现队列;
+package Coding_Interviews_Java._09____栈和队列____用两个栈实现队列;
 
 import java.util.LinkedList;
 import java.util.Queue;

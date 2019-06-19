@@ -1,4 +1,4 @@
-package Coding_Interviews_Java._06_从尾到头打印链表;
+package Coding_Interviews_Java._06____链表____从尾到头打印链表;
 
 import java.util.Stack;
 
