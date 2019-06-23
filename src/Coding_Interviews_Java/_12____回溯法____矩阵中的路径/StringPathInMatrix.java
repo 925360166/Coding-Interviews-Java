@@ -164,12 +164,14 @@ public class StringPathInMatrix {
                                 char[] str,
                                 int pathLength,
                                 boolean[] visited) {
-        if (row < 0
+        if (
+                row < 0
                 || col < 0
                 || row >= rows
                 || col >= cols
                 || visited[row * cols + col] == true
                 || str[pathLength] != matrix[row * cols + col]){
+
             return false;
         }
         if(pathLength == str.length - 1){
@@ -182,8 +184,10 @@ public class StringPathInMatrix {
                 || hasPathCore(matrix, rows, cols, row + 1, col, str, pathLength + 1, visited)
                 || hasPathCore(matrix, rows, cols, row, col + 1, str, pathLength + 1, visited)
                 || hasPathCore(matrix, rows, cols, row, col+1, str, pathLength+1, visited);
-        if(hasPath){
+        if(!hasPath){
             visited[row*cols+col] = false;
+            // C++版代码中此处有--pathLength,在Java版本代码中不需要。
+            // 因为C++函数在递归时不改变递归调用参数中的pathLength值，而Java在递归时会将参数pathLength做个+1
         }
         return hasPath;
     }
