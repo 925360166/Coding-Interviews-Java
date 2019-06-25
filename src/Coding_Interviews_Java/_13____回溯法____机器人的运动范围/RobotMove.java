@@ -11,7 +11,8 @@ package Coding_Interviews_Java._13____回溯法____机器人的运动范围;
  */
 public class RobotMove {
     public static void main(String[] args) {
-        System.out.println(movingCount(18, 18, 18));
+        System.out.println("矩阵有18行，18列，一个机器人从坐标(0, 0)的格子开始移动。要求机器人不能进入行坐标和列坐标的数位之和大于18的格子");
+        System.out.println(movingCount(1, 2, 2));
     }
 
 
