@@ -13,38 +13,81 @@ package Coding_Interviews_Java._18____删除链表的节点;
  * };
  * <p>
  * void DeleteNode(ListNode** pListHead, ListNode* pToBeDeleted)
+ *
+ *
+ * 题目二：删除链表中重复的节点。
+ *
+ * 在一个排序的链表中，如何删除重复的节点？
+ *
+ *
  */
 public class DeleteNodeInList {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
 
-        Node head = new Node(1);
-        Node second = new Node(2);
-        Node third = new Node(3);
-        Node fourth = new Node(4);
-        Node fifth = new Node(5);
 
-        head.next = second;
-        second.next = third;
-        third.next = fourth;
-        fourth.next = fifth;
+        Node head1 = new Node(1);
+        Node second1 = new Node(2);
+        Node third1 = new Node(3);
+        Node fourth1 = new Node(4);
+        Node fifth1 = new Node(5);
+
+        head1.next = second1;
+        second1.next = third1;
+        third1.next = fourth1;
+        fourth1.next = fifth1;
 
 
-        Node res = deleteNode(head, fifth);
-        if (res == null) {
+        Node newHead1 = deleteNode(head1, fifth1);
+        if (newHead1 == null) {
             System.out.println("null");
         } else {
-            System.out.println(head.value);
-            while ((head = head.next) != null) {
-                System.out.println(head.value);
+            System.out.println(newHead1.value);
+            while ((newHead1 = newHead1.next) != null) {
+                System.out.println(newHead1.value);
+            }
+        }
+
+
+        System.out.println("\n\n\n");
+
+
+        Node head2 = new Node(2);
+        Node second2 = new Node(2);
+        Node third2 = new Node(3);
+        Node fourth2 = new Node(4);
+        Node fifth2 = new Node(5);
+
+        head2.next = second2;
+        second2.next = third2;
+        third2.next = fourth2;
+        fourth2.next = fifth2;
+
+
+        Node newHead2 = deleteDuplication(head2);
+        if (newHead2 == null) {
+            System.out.println("null");
+        } else {
+            System.out.println(newHead2.value);
+            while ((newHead2.next) != null) {
+                newHead2 = newHead2.next;
+                System.out.println(newHead2.value);
             }
         }
     }
 
+    /**
+     *
+     * 题目一：在O(1)时间内删除链表节点
+     *
+     * @param head 头结点
+     * @param nodeToDeleted 待删除的节点
+     * @return 返回头结点
+     */
     private static Node deleteNode(Node head, Node nodeToDeleted) {
         if (head == null || nodeToDeleted == null) {
-            throw new RuntimeException("head node is null!");
+            throw new RuntimeException("head node cannot be null!");
         }
         //待删除的是否是尾结点
         if (nodeToDeleted.next != null) {
@@ -66,6 +109,42 @@ public class DeleteNodeInList {
         }
         return head;
     }
+
+
+    private static Node deleteDuplication(Node head){
+        if(head == null){
+            throw new RuntimeException("head node cannot be null!");
+        }
+        Node preNode = null;
+        Node curNode = head;
+        while(curNode != null){
+            Node next = curNode.next;
+            boolean needDelete = false;
+            if(next != null && next.value == curNode.value){
+                needDelete = true;
+            }
+            if(!needDelete){
+                preNode = curNode;
+                curNode = next;
+            }else{
+                int value = curNode.value;
+                Node nodeToDelete = curNode;
+                while(nodeToDelete != null && nodeToDelete.value == value){
+                    next = nodeToDelete.next;
+                    nodeToDelete = next;
+                }
+                if(preNode == null){
+                    head = next;
+                }else{
+                    preNode.next = next;
+                }
+                curNode = next;
+            }
+        }
+        return head;
+    }
+
+
 
     public static class Node {
 
